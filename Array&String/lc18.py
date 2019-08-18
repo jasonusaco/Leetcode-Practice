@@ -13,10 +13,10 @@ def fourSum(self, nums, target):
             #双指针的结束条件
             while left < right:
                 #计算和
-                sums = nums[left] + nums[r]
+                sums = nums[left] + nums[right]
                 if sums == target:
-                    results.append(result, nums[left], nums[right])
-                    left + 1
+                    results.append(result, [nums[left], nums[right]])
+                    left += 1
                     while left < right and nums[left] == nums[left-1]:
                         left += 1
                 elif sums < target:
@@ -26,7 +26,7 @@ def fourSum(self, nums, target):
         #N-sum
         else:
             for i in range(len(nums)-N+1):
-                if i == 0 or (i > 0 and nums[i-1]  nums[i]):
+                if i == 0 or (i > 0 and nums[i-1] != nums[i]):
                     findNsum(nums[i+1:], target-nums[i], N-1, result+[nums[i]], results)
     results = []
     findNsum(sorted(nums), target, 4, [], results)
